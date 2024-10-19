@@ -1,6 +1,6 @@
 FROM node:lts
 
-EXPOSE 3010
+EXPOSE 3000
 
 WORKDIR /app
 COPY . .
