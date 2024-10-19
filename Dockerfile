@@ -1,11 +1,10 @@
-FROM node:18
-
-WORKDIR /app
-
-COPY . .
-RUN npm i -g typescript
-RUN npm i
+FROM node:lts
 
 EXPOSE 3000
+
+WORKDIR /app
+COPY . .
+
+RUN npm ci
 
 CMD ["npm", "start"]
