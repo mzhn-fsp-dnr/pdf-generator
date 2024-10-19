@@ -1,10 +1,12 @@
 import express from "express";
 import moment from "moment";
+import cors from "cors";
 import PDFDocument from "pdfkit";
 
 const app = express();
 const PORT = 3000;
 
+app.use(cors());
 app.use(express.json());
 
 // @ts-ignore
