@@ -1,5 +1,5 @@
 import express from "express";
-import moment from "moment";
+import moment from "moment-timezone";
 import cors from "cors";
 import PDFDocument from "pdfkit";
 
@@ -20,7 +20,10 @@ app.post("/generate-ticket", (req, res) => {
   }
 
   const dateObj = new Date(date);
-  const formattedDate = moment(dateObj).format("HH:mm:ss DD.MM.YYYY");
+
+  const formattedDate = moment(dateObj)
+    .tz("Europe/Moscow")
+    .format("HH:mm:ss DD.MM.YYYY");
 
   const doc = new PDFDocument();
   doc.font("fonts/arial.ttf");
