@@ -1,8 +1,10 @@
 FROM node:18
+
 WORKDIR /app
 
 COPY . .
-RUN npm ci
+RUN npm i -g typescript
+RUN npm i
 
 EXPOSE 3000
 
