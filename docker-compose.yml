@@ -1,3 +1,7 @@
+networks:
+  traefik-net:
+    external: true
+
 services:
   bot:
     container_name: chatbot-tg
@@ -5,3 +9,11 @@ services:
       context: .
     ports:
       - "3010:3000"
+    networks:
+      - traefik-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gt.rule=Host(`${APP_HOST}`) && PathPrefix(`/generate-ticket`)"
+      - "traefik.http.routers.gt.entrypoints=websecure"
+      - "traefik.http.routers.gt.tls.certresolver=myresolver"
+      - "traefik.http.routers.gt.middlewares=corsheaders@file"
